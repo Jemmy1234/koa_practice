@@ -2,9 +2,16 @@ const Koa = require('koa');
 const Logger = require('koa-logger');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
+const fs = require('fs');
+const path = require('path');
 
 const app = new Koa();
 const router = new Router();
+
+function read(filename) {
+    let fullpath = path.join(_dirname, filename);
+    return fs.readFileSync(fullpath, 'binary');
+}
 
 // Router -> /
 router.get('/', async(ctx) => {
@@ -34,6 +41,10 @@ router.get('/login', async(ctx) => {
 router.post('/login', async(ctx) => {
     let user = ctx.request.body.user;
     ctx.body = `<p>Welcome, ${user}!</p>`;
+});
+// Auto load index.html
+router.get('/page', async(ctx) => {
+    ctx.body = read('index.html');
 });
 
 app.use(router.routes());
