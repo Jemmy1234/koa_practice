@@ -1,5 +1,5 @@
 const koa = require('koa');
-const router = require('koa-router');
+const Router = require('koa-router');
 const logger = require('koa-logger');
 const koaBody = require('koa-body');
 const apiRouter = require('./router/router');
@@ -7,7 +7,8 @@ const apiRouter = require('./router/router');
 const app = new koa();
 
 // index
-const index = router.get('/', ctx => {
+const router = new Router();
+const index = router.get('/', async(ctx) => {
     ctx.response.body = 'hello world';
 }).routes();
 
