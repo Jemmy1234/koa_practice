@@ -10,6 +10,6 @@ router
     .post('/user/login', userCtrl.login)
     .get('/user/:id', userCtrl.getUserData)
     .put('/user/:id/:method', userCtrl.modifiedUserData)
-    .delete('/user/:id/:method', userCtrl.deleteUserData);
+    .delete('/user/:id/:method', userCtrl.deleteUserDelData);
 
 module.exports = router;
